@@ -28,13 +28,26 @@
 
 / {
     behaviors {
-        td0: td0 {
-            compatible = "zmk,behavior-tap-dance";
-            display-name = "Shift/Caps Lock Tap Dance";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
-        };
-    };
+      lh_pht: home_row_left_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        quick-tap-ms = <200>;
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <6 7 8 9 10 11>;
+      };
+
+      rh_pht: home_row_right_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <150>;
+        quick-tap-ms = <200>;
+        bindings = <&kp>, <&kp>;
+        hold-trigger-key-positions = <0 1 2 3 4 5>;
+      };
+    };;
 
     rgb_encoder: rgb_encoder {
         compatible = "zmk,behavior-sensor-rotate";
@@ -82,20 +95,8 @@
             bindings = <
 &bt BT_CLR_ALL   &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR                                      &mmv MOVE_UP                &none  &kp PAUSE_BREAK  &kp SLCK   &kp PSCRN  &kp INS   &none
 &rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_ON                  &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &mkp RCLK        &mkp MCLK  &mkp MB4   &mkp MB5  &none
-&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &mo 3
+&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &none
                                                    &trans           &trans           &trans                                                                      &trans &trans  &trans
-            >;
-
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        layer_3 {
-            display-name = "Fn";
-            bindings = <
-&none  &none  &none  &none  &none  &none                                &mmv MOVE_UP                &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none                &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &none  &none  &none  &none  &none
-&none  &none  &none  &none  &none  &none  &kp C_MUTE                    &mmv MOVE_DOWN              &none  &none  &none  &none  &none  &trans
-                     &trans &trans &trans                                                           &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
