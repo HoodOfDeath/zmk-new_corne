@@ -45,7 +45,7 @@
     scroll_encoder: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
-        bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        bindings = <&inc_dec_kp C_VOL_UP>, <&inc_dec_kp C_VOL_DN>;
 
         tap-ms = <100>;
     };
@@ -78,11 +78,11 @@
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "CTRL";
             bindings = <
 &bt BT_CLR_ALL   &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR                                      &mmv MOVE_UP                &none  &kp PAUSE_BREAK  &kp SLCK   &kp PSCRN  &kp INS   &none
 &rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_ON                  &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &mkp RCLK        &mkp MCLK  &mkp MB4   &mkp MB5  &none
-&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &none
+&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &mo 3
                                                    &trans           &trans           &trans                                                                      &trans &trans  &trans
             >;
 
@@ -92,10 +92,10 @@
         layer_3 {
             display-name = "Fn";
             bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
+&none  &none  &none  &none  &none  &none                                &mmv MOVE_UP                &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none                &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &kp C_MUTE                    &mmv MOVE_DOWN              &none  &none  &none  &none  &none  &trans
+                     &trans &trans &trans                                                           &trans &trans &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
