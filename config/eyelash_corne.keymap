@@ -45,7 +45,7 @@
     scroll_encoder: scroll_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 
         tap-ms = <100>;
     };
@@ -56,48 +56,34 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T                                     &mmv MOVE_UP                     &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSLH
-&kp ESC    &kp A  &kp S  &kp D     &kp F  &kp G                     &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LBKT   &kp Z  &kp X  &kp C     &kp V  &kp B        &kp C_MUTE                   &mmv MOVE_DOWN                   &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RBKT
-                         &kp LGUI  &mo 1  &lt 3 SPACE                                                                &lt 3 BSPC   &mo 2  &kp ENTER
+&kp TAB   &kp Q           &kp W           &kp E            &kp R            &kp T                                &mmv MOVE_UP                &kp Y  &kp U            &kp I             &kp O           &kp P              &kp BSLH
+&kp ESC   &lh_pht LGUI A  &lh_pht LALT S  &lh_pht LSHFT D  &lh_pht LCTRL F  &kp G                &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &kp H  &rh_pht RCTRL J  &rh_pht RSHIFT K  &rh_pht RALT L  &rh_pht RGUI SEMI  &kp SQT
+&kp LBKT  &kp Z           &kp X           &kp C            &kp V            &kp B    &kp C_MUTE                  &mmv MOVE_DOWN              &kp N  &kp M            &kp COMMA         &kp DOT         &kp FSLH           &kp RBKT
+                                          &mo 2            &mo 1            &kp SPACE                                                        &kp BSPC                &kp DEL           &kp ENTER
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-
-            //sensor-bindings = <&inc_dec_kp N2 N1>;
+            sensor-bindings = <&scroll_encoder>;
         };
 
         lower_layer {
             display-name = "NUMBER";
             bindings = <
-&trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &mmv MOVE_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
-&trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
-&trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &trans        &trans        &rgb_ug RGB_EFF  &kp C_MUTE                    &mmv MOVE_DOWN                   &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp END   &kp PG_DN
-                                         &trans        &trans        &trans                                                                          &kp INS          &kp DEL          &trans
+&kp F1      &kp F2           &kp F3           &kp F4            &kp F5            &kp N6                                   &mmv MOVE_UP                &kp F7     &kp F8            &kp F9             &kp F10          &kp F11          &kp F12
+&kp GRAVE   &lh_pht LGUI N1  &lh_pht LALT N2  &lh_pht LSHFT N3  &lh_pht LCTRL N4  &kp N5                   &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &kp N6     &rh_pht RCTRL N7  &rh_pht RSHIFT N8  &rh_pht RALT N9  &rh_pht RGUI N0  &none
+&none       &kp HOME         &kp PG_DN        &kp PG_UP         &kp END           &kp MINUS    &kp C_MUTE                  &mmv MOVE_DOWN              &kp EQUAL  &kp LEFT          &kp DOWN           &kp UP           &kp RIGHT        &none
+                                              &none             &none             &trans                                                               &trans     &trans            &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "CTRL";
             bindings = <
-&trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&trans  &out OUT_USB  &out OUT_BLE  &none      &none      &mkp MB5   &trans                    &mmv MOVE_DOWN                   &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                                    &trans     &trans     &kp SPACE                                                             &kp RET    &trans     &trans
-            >;
-
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        layer_3 {
-            display-name = "Fn";
-            bindings = <
-&studio_unlock  &kp F1      &kp F2     &kp F3       &kp F4     &kp F5                                  &mmv MOVE_UP                     &kp F6       &kp F7     &kp F8       &kp F9      &kp F10          &kp F11
-&trans          &trans      &mkp LCLK  &mkp MCLK    &mkp RCLK  &mkp MB4                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &bootloader  &mkp LCLK  &mkp MCLK    &mkp RCLK   &kp PRINTSCREEN  &kp F12
-&trans          &sys_reset  &trans     &bootloader  &trans     &mkp MB5  &kp C_MUTE                    &mmv MOVE_DOWN                   &trans       &trans     &bootloader  &sys_reset  &kp SCROLLLOCK   &kp PAUSE_BREAK
-                                       &trans       &trans     &trans                                                                   &trans       &trans     &trans
+&bt BT_CLR_ALL   &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR                                      &mmv MOVE_UP                &none  &kp PAUSE_BREAK  &kp SLCK   &kp PSCRN  &kp INS   &none
+&rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_ON                  &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &mkp RCLK        &mkp MCLK  &mkp MB4   &mkp MB5  &none
+&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &none
+                                                   &none            &none            &trans                                                                      &trans &trans  &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
