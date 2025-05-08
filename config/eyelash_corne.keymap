@@ -1,5 +1,5 @@
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 300  // 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 10   // 10
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -106,15 +106,27 @@
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "CTRL";
             bindings = <
-&bt BT_CLR_ALL   &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR                                      &mmv MOVE_UP                &none  &kp PAUSE_BREAK  &kp SLCK   &kp PSCRN  &kp INS   &none
-&rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_ON                  &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &mkp RCLK        &mkp MCLK  &mkp MB4   &mkp MB5  &none
-&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &none            &none      &none      &none     &none
+&bt BT_CLR_ALL   &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR                                      &mmv MOVE_UP                &none  &kp PAUSE_BREAK  &kp SLCK   &kp PSCRN   &kp INS   &none
+&rgb_ug RGB_OFF  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_ON                  &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &none  &mkp RCLK        &mkp MCLK  &mkp MB4    &mkp MB5  &none
+&out OUT_USB     &none            &none            &rgb_ug RGB_SPI  &none            &out OUT_BLE    &kp C_MUTE                      &mmv MOVE_DOWN              &none  &kp C_PREV       &kp K_PP   &kp K_NEXT  &none     &tog 3
                                                    &trans           &trans           &trans                                                                      &trans &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        gaming_layer {
+            display-name = "FPS";
+            bindings = <
+&kp TAB   &kp T  &kp Q  &kp W  &kp E  &kp R                                &mmv MOVE_UP                &kp Y  &kp U  &kp I      &kp O    &kp P     &kp BSLH
+&kp ESC   &kp G  &kp A  &kp S  &kp D  &kp F                &mmv MOVE_LEFT  &mkp LCLK  &mmv MOVE_RIGHT  &kp H  &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LBKT  &kp B  &kp Z  &kp X  &kp C  &kp V    &kp C_MUTE                  &mmv MOVE_DOWN              &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &tog 0
+                 &kp LCTRL  &kp LSHIFT    &kp SPACE                                                    &kp BSPC      &kp DEL    &kp ENTER
+            >;
+
+            sensor-bindings = <&scroll_encoder>;
         };
     };
 };
