@@ -160,7 +160,7 @@ layers:
   - I
   - O
   - P
-  - {t: \, s: '|'}
+  - {t: QWERTY, h: toggle}
   - $$mdi:keyboard-esc$$
   - G
   - A
@@ -175,7 +175,7 @@ layers:
   - K
   - L
   - {t: ;, s: ':'}
-  - {t: '''', s: '"'}
+  - {t: QWERTY, h: toggle}
   - {t: '[', s: '{'}
   - B
   - Z
@@ -189,7 +189,7 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
-  - {t: QWERTY, h: toggle}
+  - {t: FPS, h: toggle}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:keyboard-space$$
